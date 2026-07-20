@@ -10,6 +10,21 @@ on:
       - main
 
   workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+      tags:
+        description: 'Test scenario tags'
+        required: false
+        type: string
+
 
 jobs:
   test:
@@ -31,14 +46,14 @@ jobs:
         # env:
         #   EMAIL: ${{ secrets.EMAIL }}
         #   PASSWORD: ${{ secrets.PASSWORD }}
-        run: npx cypress run
+        run: npx cypress run --spec "cypress\e2e\test\**\*.cy.js" --browser chrome
 
-      - name: Upload HTML Report
+      - name: Upload Mochawesome Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-         name: Cypress-HTML-Report
-         path: cypress/reports/html/index.html
+            name: Mochawesome-Report
+            path: cypress/Reports
 
       - name: Upload Screenshots
         if: always()
