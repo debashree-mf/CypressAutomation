@@ -33,12 +33,12 @@ jobs:
         #   PASSWORD: ${{ secrets.PASSWORD }}
         run: npx cypress run
 
-    #   - name: Upload Videos
-    #     if: always()
-    #     uses: actions/upload-artifact@v4
-    #     with:
-    #       name: Cypress-Videos
-    #       path: cypress/videos
+      - name: Upload HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+         name: Cypress-HTML-Report
+         path: cypress/reports/html/index.html
 
       - name: Upload Screenshots
         if: always()
