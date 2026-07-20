@@ -46,7 +46,7 @@ jobs:
         # env:
         #   EMAIL: ${{ secrets.EMAIL }}
         #   PASSWORD: ${{ secrets.PASSWORD }}
-        run: npx cypress run --spec "cypress\e2e\test\**\*.cy.js" --browser chrome
+        run: npx cypress run --browser chrome
 
       - name: Upload Mochawesome Report
         if: always()
